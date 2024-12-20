@@ -1,4 +1,4 @@
-package net.khoudmi.inventoryservice.security;
+package net.khoudmi.orderservice.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +35,10 @@ public class SecurityConfig {
                 .csrf(csrf->csrf.disable())
                 .headers(h->h.frameOptions(fo->fo.disable()))
                 .authorizeHttpRequests(
-                        ar->ar.requestMatchers("/h2-console/**")
+                        ar->ar.requestMatchers("/h2-console/**",
+                            "/swagger-ui.html",
+                            "/v3/**",
+                            "/swagger-ui/**")
                           .permitAll())
 //                .authorizeHttpRequests(ar->ar.requestMatchers("/api/products/**").hasAuthority("ADMIN"))
                 .authorizeHttpRequests(
